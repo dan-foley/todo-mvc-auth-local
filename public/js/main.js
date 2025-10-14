@@ -3,6 +3,8 @@ const todoItem = document.querySelectorAll('span.not')
 const todoComplete = document.querySelectorAll('span.completed')
 const editBtns = document.querySelectorAll('span.edit');
 const completedTasks = document.getElementById('completedTasks');  // Get the completed tasks element
+const prioritySelects = document.querySelectorAll('.priority-select');
+const colorPicker = document.querySelectorAll('.colorPicker');
 
 Array.from(deleteBtn).forEach((el)=>{  
     el.addEventListener('click', deleteTodo)
@@ -128,3 +130,47 @@ function updateMessage(){
     }
 }
 updateMessage();
+
+colorPicker.forEach(picker => {
+  picker.addEventListener('input', e => {
+    const newColor = e.target.value
+    const todoItem = e.target.closest('li')
+    const todoText = todoItem.querySelector('span')
+
+    // update color visually
+    todoText.style.color = newColor
+
+    // send color to server to persist
+    const id = todoItem.dataset.id
+    fetch(`/todos/color/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ color: newColor }),
+    })
+  })
+})
+
+prioritySelects.forEach(sel => sel.addEventListener('change', async function() {
+    const li = this.closest('li');
+    const todoId = li.dataset.id;
+    const newPriority = this.value;
+
+    try {
+        const response = await fetch('/todos/updatePriority', {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ todoIdFromJSFile: todoId, newPriority })
+        });
+        await response.json();
+
+        // Remove old priority class
+        li.classList.remove('high','normal','low');
+        li.classList.add(newPriority);
+
+        // Move li to the correct ul
+        document.getElementById(newPriority).appendChild(li);
+
+    } catch(err) {
+        console.log(err);
+    }
+}));
