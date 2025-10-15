@@ -2,8 +2,9 @@ const deleteBtn = document.querySelectorAll('.del')
 const todoItem = document.querySelectorAll('span.not')
 const todoComplete = document.querySelectorAll('span.completed')
 const editBtns = document.querySelectorAll('span.edit');
+const completedTasks = document.getElementById('completedTasks');  // Get the completed tasks element
 
-Array.from(deleteBtn).forEach((el)=>{
+Array.from(deleteBtn).forEach((el)=>{  
     el.addEventListener('click', deleteTodo)
 })
 
@@ -112,3 +113,18 @@ async function editTodo() {
         if (e.key === 'Enter') saveEdit();
     });
 }
+
+// Update message when all todos are completed
+function updateMessage(){
+    const todos = document.querySelectorAll('span.not, span.completed');
+    const completed = document.querySelectorAll('span.completed');
+    const total = todos.length;
+    const done = completed.length;
+    
+    if(done === total && total > 0){
+        completedTasks.style.display = 'block';
+    } else {
+        completedTasks.style.display = 'none';
+    }
+}
+updateMessage();

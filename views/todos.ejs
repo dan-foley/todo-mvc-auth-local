@@ -21,6 +21,9 @@
 
     <h2><%= user.userName %> has <%= left %> things left to do.</h2>
 
+    <!-- Show message when all todos are completed -->
+    <h3 id='completedTasks' style='display:none;'>🎉Congratulations <%= user.userName %>! You have completed your tasks today!</h3>
+
     <form action="/todos/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
