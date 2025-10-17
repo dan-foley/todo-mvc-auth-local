@@ -3,8 +3,26 @@ h1{
 }
 .completed{
     text-decoration: line-through;
-    color: gray;
+    color: gray !important;
+    opacity: 0.6;
 }
 .not{
     text-decoration: underline;
 }
+.high { 
+    background: #ffe5e5;
+    border-left: 4px solid #ff4d4d;
+}
+.normal {
+    background: #fffbea;
+    border-left: 4px solid #ffd24d;
+}
+.low { 
+    background: #e8fff0;
+    border-left: 4px solid #4dd18f;
+}
+.colorLabel {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
