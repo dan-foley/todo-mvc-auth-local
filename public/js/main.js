@@ -3,6 +3,7 @@ const todoItem = document.querySelectorAll('span.not')
 const todoComplete = document.querySelectorAll('span.completed')
 const editBtns = document.querySelectorAll('span.edit');
 const completedTasks = document.getElementById('completedTasks');  // Get the completed tasks element
+const prioritySelects = document.querySelectorAll('.priority-select');
 
 Array.from(deleteBtn).forEach((el)=>{  
     el.addEventListener('click', deleteTodo)
@@ -128,3 +129,28 @@ function updateMessage(){
     }
 }
 updateMessage();
+
+prioritySelects.forEach(sel => sel.addEventListener('change', async function() {
+    const li = this.closest('li');
+    const todoId = li.dataset.id;
+    const newPriority = this.value;
+
+    try {
+        const response = await fetch('/todos/updatePriority', {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ todoIdFromJSFile: todoId, newPriority })
+        });
+        await response.json();
+
+        // Remove old priority class
+        li.classList.remove('high','normal','low');
+        li.classList.add(newPriority);
+
+        // Move li to the correct ul
+        document.getElementById(newPriority).appendChild(li);
+
+    } catch(err) {
+        console.log(err);
+    }
+}));
