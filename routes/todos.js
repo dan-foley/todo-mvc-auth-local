@@ -13,10 +13,6 @@ router.put('/markIncomplete', todosController.markIncomplete)
 
 router.put('/updatePriority', todosController.updatePriority);
 
-router.put('/setColor', todosController.setColor);
-
-router.put('/color/:id', todosController.updateColor)
-
 router.delete('/deleteTodo', todosController.deleteTodo)
 
 router.put('/editTodo', todosController.editTodo);

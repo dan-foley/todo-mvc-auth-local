@@ -17,10 +17,6 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     enum: ['high', 'normal', 'low'],
     default: 'normal'
-  },
-  color: {
-    type: String,
-    default: '#000000'
   }
 })
 

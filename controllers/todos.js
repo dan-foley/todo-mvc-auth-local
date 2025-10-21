@@ -61,31 +61,6 @@ module.exports = {
             console.log(err);
         }
     },
-    setColor: async (req, res) => {
-        try {
-            await Todo.findOneAndUpdate(
-                { _id: req.body.todoIdFromJSFile },
-                { color: req.body.color }
-            );
-            console.log('Color updated');
-            res.json('Color updated');
-        } catch (err) {
-            console.log(err);
-        }
-    },
-    updateColor: async (req, res) => {
-        try {
-            const { id } = req.params
-            const { color } = req.body
-
-            await Todo.findByIdAndUpdate(id, { color })
-
-            res.json({ success: true })
-        } catch (err) {
-            console.error('Error updating color:', err)
-            res.status(500).json({ error: 'Failed to update color' })
-        }
-    },
     deleteTodo: async (req, res)=>{
         console.log(req.body.todoIdFromJSFile)
         try{
