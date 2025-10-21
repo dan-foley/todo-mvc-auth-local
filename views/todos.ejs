@@ -14,7 +14,7 @@
     <ul id="high">
     <% highs.forEach(el => { %>
         <li class='todoItem high' data-id='<%=el._id%>'>
-            <span class='<%= el.completed === true ? "completed" : "not" %>'style='color:<%= el.color || "#000000" %>'><%= el.todo %></span>
+            <span class='<%= el.completed === true ? "completed" : "not" %>'><%= el.todo %></span>
             <select class="priority-select">
                 <option value="high" selected>High</option>
                 <option value="normal">Normal</option>
@@ -31,7 +31,7 @@
     <ul id="normal">
     <% normals.forEach(el => { %>
         <li class='todoItem normal' data-id='<%=el._id%>'>
-            <span class='<%= el.completed === true ? "completed" : "not" %>'style='color:<%= el.color || "#000000" %>'><%= el.todo %></span>
+            <span class='<%= el.completed === true ? "completed" : "not" %>'><%= el.todo %></span>
             <select class="priority-select">
                 <option value="high">High</option>
                 <option value="normal" selected>Normal</option>
@@ -48,7 +48,7 @@
     <ul id="low">
     <% lows.forEach(el => { %>
         <li class='todoItem low' data-id='<%=el._id%>'>
-            <span class='<%= el.completed === true ? "completed" : "not" %>'style='color:<%= el.color || "#000000" %>'><%= el.todo %></span>
+            <span class='<%= el.completed === true ? "completed" : "not" %>'><%= el.todo %></span>
             <select class="priority-select">
                 <option value="high">High</option>
                 <option value="normal">Normal</option>
