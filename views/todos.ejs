@@ -48,7 +48,7 @@
     <ul id="low">
     <% lows.forEach(el => { %>
         <li class='todoItem low' data-id='<%=el._id%>'>
-            <span class='<%= el.completed === true ? "completed" : "not" %>'><%= el.todo %></span
+            <span class='<%= el.completed === true ? "completed" : "not" %>'><%= el.todo %></span>
             <select class="priority-select">
                 <option value="high">High</option>
                 <option value="normal">Normal</option>
